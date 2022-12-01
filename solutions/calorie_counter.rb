@@ -5,7 +5,7 @@ class CalorieCounter
   attr_reader :elves
 
   def initialize(input:)
-    data = input.each_with_object([[]]) do |val, acc|
+    input_per_elf = input.each_with_object([[]]) do |val, acc|
       if val == ''
         acc.push([])
       else
@@ -15,40 +15,23 @@ class CalorieCounter
       acc
     end
 
-    @elves = create_elves(data: data)
-  end
-
-  def most_calories_elf
-    @elves.max_by(&:total_calories)
+    @elves = create_elves(data: input_per_elf)
   end
 
   private
 
   def create_elves(data:)
-    elves = []
-    data.each do |elf_calories|
-      elf = Elf.new
-      elf_calories.each do |cal|
-        calorie_value = cal.to_i
-        elf.add_item(value: calorie_value)
-      end
-
-      elves.push(elf)
-    end
-
-    # Sort from most calories carried to least
-    elves.sort_by(&:total_calories).reverse
+    # Map to Elf object and sort from most calories carried to least
+    data.map do |elf_calories|
+      Elf.new(items: elf_calories)
+    end.sort_by(&:total_calories).reverse
   end
 end
 
 # Contains information about the items carried by an elf, specifically calories
 class Elf
-  def initialize
-    @items = []
-  end
-
-  def add_item(value:)
-    @items.push(value)
+  def initialize(items:)
+    @items = items.map(&:to_i)
   end
 
   def total_calories
