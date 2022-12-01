@@ -17,3 +17,5 @@ reader = InputReader.new(filename: 'inputs/day-1.txt')
 
 calorie_counter = CalorieCounter.new(input: reader.lines)
 puts "The elf carrying the most Calories is carrying #{calorie_counter.most_calories_elf.total_calories} calories"
+top_three_elves = calorie_counter.elves[0..2]
+puts "The top 3 elves are carrying #{top_three_elves.sum(&:total_calories)} calories"

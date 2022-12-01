@@ -36,7 +36,8 @@ class CalorieCounter
       elves.push(elf)
     end
 
-    elves
+    # Sort from most calories carried to least
+    elves.sort_by(&:total_calories).reverse
   end
 end
 

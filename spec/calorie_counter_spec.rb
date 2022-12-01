@@ -30,4 +30,14 @@ RSpec.describe CalorieCounter do
     elf = subject.most_calories_elf
     expect(elf.total_calories).to eq 24_000
   end
+
+  it 'will return all elves in order of calories carrying' do
+    expect(subject.elves.map(&:total_calories)).to eq [
+      24_000,
+      11_000,
+      10_000,
+      6_000,
+      4_000
+    ]
+  end
 end
