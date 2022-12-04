@@ -8,8 +8,8 @@ RSpec.describe RPSRoundScorer do
   end
 
   it 'calculates the expected score' do
-    expect(subject.calculate_score('A', 'Y')).to eq 8
-    expect(subject.calculate_score('B', 'X')).to eq 1
-    expect(subject.calculate_score('C', 'Z')).to eq 6
+    expect(subject.calculate_score(opponent_input: 'A', your_input: 'Y')).to eq 8
+    expect(subject.calculate_score(opponent_input: 'B', your_input: 'X')).to eq 1
+    expect(subject.calculate_score(opponent_input: 'C', your_input: 'Z')).to eq 6
   end
 end

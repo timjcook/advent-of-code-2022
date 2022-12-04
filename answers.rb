@@ -28,7 +28,7 @@ heading day: 2
 reader = InputReader.new(filename: 'inputs/day-2.txt')
 scores = reader.lines.map do |raw|
   opponent_choice_raw, your_choice_raw = raw.split ' '
-  RPSRoundScorer.calculate_score(opponent_choice_raw, your_choice_raw)
+  RPSRoundScorer.calculate_score(opponent_input: opponent_choice_raw, your_input: your_choice_raw)
 end
 
 puts "The total score according to the rock, paper, scissors strategy guide will be #{scores.sum}"
