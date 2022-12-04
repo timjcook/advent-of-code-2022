@@ -3,6 +3,7 @@
 require_relative 'input_reader'
 require_relative 'solutions/calorie_counter'
 require_relative 'solutions/rock_paper_scissors'
+require_relative 'solutions/backpack'
 
 def heading(day:)
   puts "===========================================\n"
@@ -45,3 +46,12 @@ scores = reader.lines.map do |raw|
   )
 end
 puts "The total score according to the rock, paper, scissors strategy B will be #{scores.sum}"
+
+## Day 3
+
+heading day: 3
+reader = InputReader.new(filename: 'inputs/day-3.txt')
+scores = reader.lines.map do |line|
+  Backpack.priority_score(input: line)
+end
+puts "The sum priority score of each backpack is #{scores.sum}"
