@@ -66,5 +66,7 @@ puts "The sum priority score of each backpack group is #{scores.sum}"
 
 heading day: 4
 reader = InputReader.new(filename: 'inputs/day-4.txt')
-overlapping_pairs = CleaningRoster.overlapping_pairs(input: reader.lines)
-puts "The number of redundant cleaning elves is #{overlapping_pairs.length}"
+completely_overlapping_pairs = CleaningRoster.completely_overlapping_pairs(input: reader.lines)
+puts "The number of completely redundant cleaning elves is #{completely_overlapping_pairs.length}"
+partially_overlapping_pairs = CleaningRoster.partially_overlapping_pairs(input: reader.lines)
+puts "The number of partially redundant cleaning elves is #{partially_overlapping_pairs.length}"

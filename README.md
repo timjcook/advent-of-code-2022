@@ -11,3 +11,6 @@ The core change in this problem was how we calculate the game choice that you ma
 
 ## Day 3 - Backpacks and groups of backpacks
 The key to this one was that the core functionality was being able to compare any number of strings and find a common char. This was easily done using ruby's intersect operator `&`. The string splitting of part 1 is actually more of a mislead.
+
+## Day 4 - Cleaning roster
+Not a lot to say here. Seems like the intersect operator gets you all the way there again.

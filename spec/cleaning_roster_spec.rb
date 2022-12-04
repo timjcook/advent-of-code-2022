@@ -14,7 +14,11 @@ RSpec.describe CleaningElf do
     ]
   end
 
-  it 'finds the expected number of overlapping pairs' do
-    expect(CleaningRoster.overlapping_pairs(input: input).length).to eq 2
+  it 'finds the expected number of completely overlapping pairs' do
+    expect(CleaningRoster.completely_overlapping_pairs(input: input).length).to eq 2
+  end
+
+  it 'finds the expected number of partially overlapping pairs' do
+    expect(CleaningRoster.partially_overlapping_pairs(input: input).length).to eq 4
   end
 end

@@ -9,7 +9,7 @@ class CleaningRoster
     end
   end
 
-  def overlapping_pairs
+  def completely_overlapping_pairs
     cleaning_elves.select do |pair|
       elf1, elf2 = pair
       intersection = elf1.assigned_sections & elf2.assigned_sections
@@ -18,9 +18,22 @@ class CleaningRoster
     end
   end
 
+  def partially_overlapping_pairs
+    cleaning_elves.select do |pair|
+      elf1, elf2 = pair
+      intersection = elf1.assigned_sections & elf2.assigned_sections
+
+      intersection.length.positive?
+    end
+  end
+
   class << self
-    def overlapping_pairs(input:)
-      new(input: input).overlapping_pairs
+    def completely_overlapping_pairs(input:)
+      new(input: input).completely_overlapping_pairs
+    end
+
+    def partially_overlapping_pairs(input:)
+      new(input: input).partially_overlapping_pairs
     end
   end
 
