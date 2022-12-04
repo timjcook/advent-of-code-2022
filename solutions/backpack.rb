@@ -1,36 +1,55 @@
 # frozen_string_literal: true
 
-# calculate information from a string of backpack characters
-class Backpack
-  def initialize(input:)
-    @first_compartment = input[0..(input.length / 2) - 1]
-    @second_compartment = input[(input.length / 2)..input.length]
+# can calculate a priority score based on a set of item strings
+class BackpackComparer
+  def initialize(items:)
+    @items = items
   end
 
+  attr_reader :items
+
   def priority_score
-    item_score(item: common_item)
+    VALID_ITEMS.index(common_item) + 1
   end
 
   class << self
-    def priority_score(input:)
-      searcher = new(input: input)
-      searcher.priority_score
+    def priority_score(*items)
+      new(items: items).priority_score
     end
   end
 
   private
 
-  attr_reader :first_compartment, :second_compartment
-
   def common_item
-    first_compartment.split('').find do |f|
-      second_compartment.include? f
-    end
-  end
-
-  def item_score(item:)
-    VALID_ITEMS.index(item) + 1
+    items.map { |i| i.split('') }.reduce(:&).first
   end
 
   VALID_ITEMS = [*'a'..'z', *'A'..'Z'].freeze
+end
+
+# provides a set of methods on an elf's backpack
+class Backpack
+  class << self
+    def priority_score(input:)
+      first_compartment = input[0..(input.length / 2) - 1]
+      second_compartment = input[(input.length / 2)..input.length]
+
+      BackpackComparer.priority_score(first_compartment, second_compartment)
+    end
+  end
+end
+
+# provides a set of methods on a group of backpacks
+class BackpackGroup
+  def initialize(backpacks:)
+    @backpacks = backpacks
+  end
+
+  attr_reader :backpacks
+
+  class << self
+    def priority_score(*backpacks)
+      BackpackComparer.priority_score(*backpacks)
+    end
+  end
 end

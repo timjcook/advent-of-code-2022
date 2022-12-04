@@ -55,3 +55,8 @@ scores = reader.lines.map do |line|
   Backpack.priority_score(input: line)
 end
 puts "The sum priority score of each backpack is #{scores.sum}"
+scores = []
+reader.lines.each_slice(3) do |s|
+  scores << BackpackGroup.priority_score(*s)
+end
+puts "The sum priority score of each backpack group is #{scores.sum}"

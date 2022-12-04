@@ -12,3 +12,18 @@ RSpec.describe Backpack do
     expect(Backpack.priority_score(input: 'CrZsJsPPZsGzwwsLwLmpwMDw')).to eq 19
   end
 end
+
+RSpec.describe BackpackGroup do
+  it 'calculates the expected priority score for the given input' do
+    expect(BackpackGroup.priority_score(
+             'vJrwpWtwJgWrhcsFMMfFFhFp',
+             'jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL',
+             'PmmdzqPrVvPwwTWBwg'
+           )).to eq 18
+    expect(BackpackGroup.priority_score(
+             'wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn',
+             'ttgJtRGJQctTZtZT',
+             'CrZsJsPPZsGzwwsLwLmpwMDw'
+           )).to eq 52
+  end
+end
