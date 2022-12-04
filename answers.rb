@@ -4,6 +4,7 @@ require_relative 'input_reader'
 require_relative 'solutions/calorie_counter'
 require_relative 'solutions/rock_paper_scissors'
 require_relative 'solutions/backpack'
+require_relative 'solutions/cleaning_roster'
 
 def heading(day:)
   puts "===========================================\n"
@@ -60,3 +61,10 @@ reader.lines.each_slice(3) do |s|
   scores << BackpackGroup.priority_score(*s)
 end
 puts "The sum priority score of each backpack group is #{scores.sum}"
+
+## Day 4
+
+heading day: 4
+reader = InputReader.new(filename: 'inputs/day-4.txt')
+overlapping_pairs = CleaningRoster.overlapping_pairs(input: reader.lines)
+puts "The number of redundant cleaning elves is #{overlapping_pairs.length}"
